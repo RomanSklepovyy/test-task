@@ -1,46 +1,9 @@
 import React, { useState } from 'react';
 import { Table } from 'antd';
+import { dataSource } from './data';
+import OrderDescription from './OrderDescription';
 
 const OrdersTable = () => {
-  const dataSource = [
-    {
-      key: '1',
-      status: 'crated',
-      description: 'some important stuff',
-      email: 'auser@mail.com',
-      orderedBy: 'Andrew',
-      shipTo: 'Lviv Shevchenko street',
-      billTo: '',
-      items: '',
-      createdAt: new Date('2021-01-28 10:20:52.672Z'),
-      updatedAt: new Date('2021-01-28 10:20:52.672Z'),
-    },
-    {
-      key: '2',
-      status: 'done',
-      description: 'very very important stuff',
-      email: 'buser@mail.com',
-      orderedBy: 'David',
-      shipTo: 'Ivano-Frankivsk Galytska street',
-      billTo: '',
-      items: '',
-      createdAt: new Date('2021-01-28 12:31:22.937Z'),
-      updatedAt: new Date('2021-01-28 12:31:22.937Z'),
-    },
-    {
-      key: '3',
-      status: 'in progress',
-      description: 'delivering 562',
-      email: 'cuser@mail.com',
-      orderedBy: 'Billy',
-      shipTo: 'Kyiv Shuhevicha street',
-      billTo: '',
-      items: '',
-      createdAt: new Date('2021-01-26 15:37:49.779Z'),
-      updatedAt: new Date('2021-01-26 15:37:49.779Z'),
-    },
-  ];
-
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const [sortedInfo, setSortedInfo] = useState({});
 
@@ -91,20 +54,11 @@ const OrdersTable = () => {
       ellipsis: true,
     },
     {
-      title: 'Line items',
-      dataIndex: 'items',
-      key: 'items',
+      title: 'Created at',
+      dataIndex: 'createdAt',
+      key: 'createdAt',
+      ellipsis: true,
     },
-    // {
-    //   title: 'Created at',
-    //   dataIndex: 'createdAt',
-    //   key: 'createdAt',
-    // },
-    // // {
-    // //   title: 'Updated at',
-    // //   dataIndex: 'updatedAt',
-    // //   key: 'updatedAt',
-    // // },
   ];
 
   const handleChange = (pagination, filters, sorter) => {
@@ -127,6 +81,7 @@ const OrdersTable = () => {
       dataSource={dataSource}
       onChange={handleChange}
       bordered
+      expandedRowRender={(record) => <OrderDescription items={record.items} />}
     />
   );
 };

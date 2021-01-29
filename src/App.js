@@ -28,7 +28,6 @@ function App() {
           <StyledContent>
             <ContentRouter />
           </StyledContent>
-
         </Layout>
       </StyledLayout>
     </BrowserRouter>
