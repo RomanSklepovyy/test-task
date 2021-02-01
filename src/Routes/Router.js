@@ -7,6 +7,7 @@ import Members from '../Components/Members/Members';
 import Connections from '../Components/Connections/Connections';
 import Systems from '../Components/Systems/Systems';
 import Login from '../Components/Login/Login';
+import Register from '../Components/Register/Register';
 
 const ContentRouter = () => (
   <Switch>
@@ -18,6 +19,7 @@ const ContentRouter = () => (
     <Route path="/connections" component={Connections} />
     <Route path="/systems" component={Systems} />
     <Route path="/login" component={Login} />
+    <Route path="/signup" component={Register} />
     <Route render={() => (<h1>Not found</h1>)} />
   </Switch>
 );

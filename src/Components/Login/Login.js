@@ -1,20 +1,12 @@
 import React from 'react';
-import styled from 'styled-components';
 import LoginForm from './LoginForm';
-
-const ContainerText = styled.div`
-  text-align: center;
-  font-size: 22px;
-  font-weight: bold;
-  margin-bottom: 25px;
-  color: dodgerblue;
-`;
+import FormHeader from '../../Styles/formHeader';
 
 const Login = () => (
   <>
-    <ContainerText>
+    <FormHeader>
       Login:
-    </ContainerText>
+    </FormHeader>
     <LoginForm />
   </>
 
