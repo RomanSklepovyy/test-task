@@ -11,13 +11,14 @@ const FormStyled = styled(Form)`
   margin: auto;
 `;
 
-const LoginForm = ({ form }) => {
+const LoginForm = ({ form, login }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
     form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        login();
       }
     });
   };
@@ -62,6 +63,7 @@ const LoginForm = ({ form }) => {
 
 LoginForm.propTypes = {
   form: PropTypes.object.isRequired,
+  login: PropTypes.func.isRequired,
 };
 
 export default Form.create({ name: 'normal_login' })(LoginForm);
