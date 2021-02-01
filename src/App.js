@@ -3,9 +3,9 @@ import 'antd/dist/antd.css';
 import styled from 'styled-components';
 import { BrowserRouter } from 'react-router-dom';
 import { Layout } from 'antd';
-import Sidebar from './components/Sidebar';
+import Sidebar from './Components/Sidebar';
 import ContentRouter from './Routes/Router';
-import Header from './components/Header/Header';
+import Header from './Components/Header/Header';
 
 const { Content } = Layout;
 const StyledLayout = styled(Layout)`

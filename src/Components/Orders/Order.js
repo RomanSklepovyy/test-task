@@ -1,6 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
-import OrdersTable from './OrdersTable';
+import OrdersTable from './OrdersTable/OrdersTable';
 
 const Order = () => (
   <OrdersTable />

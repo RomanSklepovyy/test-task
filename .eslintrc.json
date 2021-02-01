@@ -2,7 +2,6 @@
   "extends": [
     "airbnb", "react-app"],
   "rules": {
-    "linebreak-style": ["error", "windows"],
     "import/prefer-default-export": 0,
     "react/jsx-filename-extension": 0,
     "react/jsx-props-no-spreading": 0,

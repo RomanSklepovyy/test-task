@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Dashboard from '../components/Dashboard/Dashboard';
-import Order from '../components/Orders/Order';
-import Products from '../components/Products/Products';
-import Members from '../components/Members/Members';
-import Connections from '../components/Connections/Connections';
-import Systems from '../components/Systems/Systems';
+import Dashboard from '../Components/Dashboard/Dashboard';
+import Order from '../Components/Orders/Order';
+import Products from '../Components/Products/Products';
+import Members from '../Components/Members/Members';
+import Connections from '../Components/Connections/Connections';
+import Systems from '../Components/Systems/Systems';
 
 const ContentRouter = () => (
   <Switch>
