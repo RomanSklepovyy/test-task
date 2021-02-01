@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table } from 'antd';
 
-const OrderDescription = (props) => {
+const OrderDescriptionTable = (props) => {
   // eslint-disable-next-line react/prop-types
   const { items } = props;
 
@@ -15,6 +15,7 @@ const OrderDescription = (props) => {
       title: 'Product ID',
       dataIndex: 'productId',
       key: 'productId',
+      ellipsis: true,
     },
     {
       title: 'Unit Price',
@@ -41,13 +42,13 @@ const OrderDescription = (props) => {
   return (
     <div>
       <Table
+        size="small"
         columns={columns}
         dataSource={items}
         bordered
-        size="small"
       />
     </div>
   );
 };
 
-export default OrderDescription;
+export default OrderDescriptionTable;
