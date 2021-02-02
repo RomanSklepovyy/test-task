@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Form, Checkbox } from 'antd';
+import { useDispatch } from 'react-redux';
 import PasswordInput from './Inputs/PasswordInput';
 import UsernameInput from './Inputs/UsernameInput';
 import SubmitButton from './Inputs/SubmitButton';

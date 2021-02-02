@@ -1,6 +1,8 @@
-import * as types from './authActionTypes';
+import { loginSuccessAction, userLoadingAction } from './authActions';
 
-export const loginRequest = async (dispatch, getState) => {
-  const res = await setTimeout(() => ({ name: 'Ivan' }), 2000);
-  dispatch({ type: types.LOGIN_SUCCESS, payload: res });
+export const loginThunk = async (dispatch, getState) => {
+  dispatch(userLoadingAction());
+  const sleep = (m) => new Promise((r) => setTimeout(r, m));
+  await sleep(5000);
+  dispatch(loginSuccessAction({ name: 'Ivan' }, 'afdfradsgesgfrsf'));
 };
