@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {
   Form, Checkbox, Input, Icon, Button,
 } from 'antd';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../redux/authentication/authThunks';
 
 const FormStyled = styled(Form)`
@@ -18,6 +18,7 @@ const SubmitButtonStyled = styled(Button)`
 
 const LoginForm = ({ form }) => {
   const dispatch = useDispatch();
+  const isLoading = useSelector((state) => state.authentication.isLoading);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -33,7 +34,7 @@ const LoginForm = ({ form }) => {
 
   return (
     <FormStyled onSubmit={handleSubmit} className="login-form">
-      <Form.Item>
+      <Form.Item validateStatus={isLoading && 'validating'} hasFeedback>
         {getFieldDecorator('email', {
           rules: [{ required: true, message: 'Please input your username!' }],
         })(
@@ -44,7 +45,7 @@ const LoginForm = ({ form }) => {
         )}
       </Form.Item>
 
-      <Form.Item>
+      <Form.Item validateStatus={isLoading && 'validating'} hasFeedback>
         {getFieldDecorator('password', {
           rules: [{ required: true, message: 'Please input your Password!' }],
         })(

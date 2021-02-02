@@ -7,11 +7,13 @@ import {
   Checkbox,
   Button,
 } from 'antd';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../../redux/authentication/authThunks';
 
 const RegisterForm = ({ form }) => {
   const dispatch = useDispatch();
+
+  const isLoading = useSelector((state) => state.authentication.isLoading);
   const [confirmDirty, setConfirmDirty] = useState(false);
 
   const handleSubmit = (e) => {
@@ -72,13 +74,13 @@ const RegisterForm = ({ form }) => {
   return (
     <Form {...formItemLayout} onSubmit={handleSubmit}>
 
-      <Form.Item label={(<span> Full name&nbsp; </span>)}>
+      <Form.Item validateStatus={isLoading && 'validating'} hasFeedback label={(<span> Full name&nbsp; </span>)}>
         {getFieldDecorator('fullName', {
           rules: [{ required: true, message: 'Please input your full name!', whitespace: true }],
         })(<Input />)}
       </Form.Item>
 
-      <Form.Item label="E-mail">
+      <Form.Item validateStatus={isLoading && 'validating'} hasFeedback label="E-mail">
         {getFieldDecorator('email', {
           rules: [
             {
@@ -93,7 +95,7 @@ const RegisterForm = ({ form }) => {
         })(<Input />)}
       </Form.Item>
 
-      <Form.Item label="Password" hasFeedback>
+      <Form.Item validateStatus={isLoading && 'validating'} label="Password" hasFeedback>
         {getFieldDecorator('password', {
           rules: [
             {
@@ -105,7 +107,7 @@ const RegisterForm = ({ form }) => {
         })(<Input.Password />)}
       </Form.Item>
 
-      <Form.Item label="Confirm Password" hasFeedback>
+      <Form.Item label="Confirm Password" validateStatus={isLoading && 'validating'} hasFeedback>
         {getFieldDecorator('confirm', {
           rules: [
             {
