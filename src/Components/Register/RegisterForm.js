@@ -12,7 +12,6 @@ import { registerUser } from '../../redux/authentication/authThunks';
 
 const RegisterForm = ({ form }) => {
   const dispatch = useDispatch();
-
   const isLoading = useSelector((state) => state.authentication.isLoading);
   const [confirmDirty, setConfirmDirty] = useState(false);
 
@@ -74,13 +73,13 @@ const RegisterForm = ({ form }) => {
   return (
     <Form {...formItemLayout} onSubmit={handleSubmit}>
 
-      <Form.Item validateStatus={isLoading && 'validating'} hasFeedback label={(<span> Full name&nbsp; </span>)}>
+      <Form.Item validateStatus={isLoading ? 'validating' : ''} hasFeedback label={(<span> Full name&nbsp; </span>)}>
         {getFieldDecorator('fullName', {
           rules: [{ required: true, message: 'Please input your full name!', whitespace: true }],
         })(<Input />)}
       </Form.Item>
 
-      <Form.Item validateStatus={isLoading && 'validating'} hasFeedback label="E-mail">
+      <Form.Item validateStatus={isLoading ? 'validating' : ''} hasFeedback label="E-mail">
         {getFieldDecorator('email', {
           rules: [
             {

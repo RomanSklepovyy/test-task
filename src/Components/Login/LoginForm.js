@@ -34,7 +34,7 @@ const LoginForm = ({ form }) => {
 
   return (
     <FormStyled onSubmit={handleSubmit} className="login-form">
-      <Form.Item validateStatus={isLoading && 'validating'} hasFeedback>
+      <Form.Item validateStatus={isLoading ? 'validating' : ''} hasFeedback>
         {getFieldDecorator('email', {
           rules: [{ required: true, message: 'Please input your username!' }],
         })(
@@ -45,7 +45,7 @@ const LoginForm = ({ form }) => {
         )}
       </Form.Item>
 
-      <Form.Item validateStatus={isLoading && 'validating'} hasFeedback>
+      <Form.Item validateStatus={isLoading ? 'validating' : ''} hasFeedback>
         {getFieldDecorator('password', {
           rules: [{ required: true, message: 'Please input your Password!' }],
         })(
