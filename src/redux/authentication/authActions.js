@@ -2,14 +2,14 @@ import * as types from './authActionTypes';
 
 export const userLoadingAction = () => ({ type: types.USER_LOADING });
 
-export const loginSuccessAction = (user, token) => ({
+export const loginSuccessAction = (user, token, refreshToken) => ({
   type: types.LOGIN_SUCCESS,
-  payload: { user, token },
+  payload: { user, token, refreshToken },
 });
 
-export const registerSuccessAction = (user, token) => ({
+export const registerSuccessAction = (user, token, refreshToken) => ({
   type: types.REGISTER_SUCCESS,
-  payload: { user, token },
+  payload: { user, token, refreshToken },
 });
 
 export const loginFailureAction = () => ({ type: types.LOGIN_FAILURE });

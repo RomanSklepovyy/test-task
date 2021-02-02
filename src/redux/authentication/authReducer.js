@@ -2,6 +2,7 @@ import * as types from './authActionTypes';
 
 const initialState = {
   token: localStorage.getItem('token'),
+  refreshToken: localStorage.getItem('refreshToken'),
   isAuthenticated: false,
   isLoading: false,
   user: JSON.parse(localStorage.getItem('user')),
@@ -17,6 +18,7 @@ const authReducer = (state = initialState, action) => {
     case types.LOGIN_SUCCESS:
     case types.REGISTER_SUCCESS:
       localStorage.setItem('token', action.payload.token);
+      localStorage.setItem('token', action.payload.refreshToken);
       return {
         ...state,
         isAuthenticated: true,

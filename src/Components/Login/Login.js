@@ -1,9 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import LoginForm from './LoginForm';
 import FormHeader from '../../Styles/formHeader';
 
-const Login = ({ login }) => (
+const Login = () => (
   <>
     <FormHeader>
       Login:
@@ -12,9 +11,5 @@ const Login = ({ login }) => (
   </>
 
 );
-
-Login.propTypes = {
-  login: PropTypes.func.isRequired,
-};
 
 export default Login;
