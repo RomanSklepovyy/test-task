@@ -6,3 +6,11 @@ export const login = (email, password) => (
     password,
   })
 );
+
+export const register = (fullName, email, password) => (
+  API.post('/users/signup', {
+    fullName,
+    email,
+    password,
+  })
+);

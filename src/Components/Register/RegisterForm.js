@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 
 import {
   Form,
@@ -8,19 +7,18 @@ import {
   Checkbox,
   Button,
 } from 'antd';
-
-const container = styled.div`
-  border: antiquewhite solid 2px;
-`;
+import { useDispatch } from 'react-redux';
+import { registerUser } from '../../redux/authentication/authThunks';
 
 const RegisterForm = ({ form }) => {
+  const dispatch = useDispatch();
   const [confirmDirty, setConfirmDirty] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        dispatch(registerUser(values));
       }
     });
   };

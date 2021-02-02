@@ -5,7 +5,7 @@ import {
   Form, Checkbox, Input, Icon, Button,
 } from 'antd';
 import { useDispatch } from 'react-redux';
-import { createUser } from '../../redux/authentication/authThunks';
+import { loginUser } from '../../redux/authentication/authThunks';
 
 const FormStyled = styled(Form)`
   max-width: 300px;
@@ -24,8 +24,7 @@ const LoginForm = ({ form }) => {
 
     form.validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
-        dispatch(createUser(values));
+        dispatch(loginUser(values));
       }
     });
   };

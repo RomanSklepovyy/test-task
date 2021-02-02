@@ -16,7 +16,6 @@ const authReducer = (state = initialState, action) => {
         isLoading: true,
       };
     case types.USER_LOADING_SUCCESS:
-      console.log(action);
       localStorage.setItem('token', action.payload.token);
       localStorage.setItem('token', action.payload.refreshToken);
       return {
@@ -29,6 +28,7 @@ const authReducer = (state = initialState, action) => {
     case types.AUTH_ERROR:
     case types.LOGOUT:
       localStorage.removeItem('token');
+      localStorage.removeItem('refreshToken');
       return {
         ...state,
         token: null,

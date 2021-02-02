@@ -6,14 +6,22 @@ import {
   from './authActions';
 import * as API from '../../Services/apiRequests';
 
-export const createUser = ({ email, password }) => async (dispatch) => {
+export const loginUser = ({ email, password }) => async (dispatch) => {
   try {
     dispatch(userLoadingAction());
-    const data = await API.login(email, password);
-    dispatch(userLoadingSuccessAction(data.data.user, data.data.token, data.data.refreshToken));
-    return data;
+    const res = await API.login(email, password);
+    dispatch(userLoadingSuccessAction(res.data.user, res.data.token, res.data.refreshToken));
   } catch (error) {
     dispatch(userLoadingFailureAction());
-    return error;
+  }
+};
+
+export const registerUser = ({ fullName, email, password }) => async (dispatch) => {
+  try {
+    dispatch(userLoadingAction());
+    const res = await API.register(fullName, email, password);
+    dispatch(userLoadingSuccessAction(res.data.user, res.data.token, res.data.refreshToken));
+  } catch (e) {
+    dispatch(userLoadingFailureAction());
   }
 };
