@@ -5,7 +5,7 @@ const initialState = {
   refreshToken: localStorage.getItem('refreshToken'),
   isAuthenticated: false,
   isLoading: false,
-  user: JSON.parse(localStorage.getItem('user')),
+  user: null,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -15,8 +15,8 @@ const authReducer = (state = initialState, action) => {
         ...state,
         isLoading: true,
       };
-    case types.LOGIN_SUCCESS:
-    case types.REGISTER_SUCCESS:
+    case types.USER_LOADING_SUCCESS:
+      console.log(action);
       localStorage.setItem('token', action.payload.token);
       localStorage.setItem('token', action.payload.refreshToken);
       return {
@@ -25,8 +25,7 @@ const authReducer = (state = initialState, action) => {
         isLoading: false,
         user: action.payload,
       };
-    case types.REGISTER_FAILURE:
-    case types.LOGIN_FAILURE:
+    case types.USER_LOADING_FAILURE:
     case types.AUTH_ERROR:
     case types.LOGOUT:
       localStorage.removeItem('token');

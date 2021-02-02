@@ -1,14 +1,19 @@
-import { loginFailureAction, loginSuccessAction, userLoadingAction } from './authActions';
+import {
+  userLoadingAction,
+  userLoadingFailureAction,
+  userLoadingSuccessAction,
+}
+  from './authActions';
 import * as API from '../../Services/apiRequests';
 
 export const createUser = ({ email, password }) => async (dispatch) => {
   try {
     dispatch(userLoadingAction());
-    const data = await API.login(email, password).then();
-    dispatch(loginSuccessAction(data.user, data.token, data.refreshToken));
+    const data = await API.login(email, password);
+    dispatch(userLoadingSuccessAction(data.data.user, data.data.token, data.data.refreshToken));
     return data;
   } catch (error) {
-    dispatch(loginFailureAction());
+    dispatch(userLoadingFailureAction());
     return error;
   }
 };
