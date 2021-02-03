@@ -5,6 +5,7 @@ import {
   Form, Checkbox, Input, Icon, Button,
 } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { loginUser } from '../../redux/authentication/authThunks';
 
 const FormStyled = styled(Form)`
@@ -17,6 +18,7 @@ const SubmitButtonStyled = styled(Button)`
 `;
 
 const LoginForm = ({ form }) => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const isLoading = useSelector((state) => state.authentication.isLoading);
 
@@ -26,8 +28,13 @@ const LoginForm = ({ form }) => {
     form.validateFields((err, values) => {
       if (!err) {
         dispatch(loginUser(values));
+        history.push('/');
       }
     });
+  };
+
+  const registerHandler = () => {
+    history.push('/signup');
   };
 
   const { getFieldDecorator } = form;
@@ -74,7 +81,7 @@ const LoginForm = ({ form }) => {
         Or
         {' '}
 
-        <a href="">register now!</a>
+        <a onClick={registerHandler}>register now!</a>
 
       </Form.Item>
     </FormStyled>

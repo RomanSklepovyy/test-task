@@ -8,9 +8,11 @@ import {
   Button,
 } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { registerUser } from '../../redux/authentication/authThunks';
 
 const RegisterForm = ({ form }) => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const isLoading = useSelector((state) => state.authentication.isLoading);
   const [confirmDirty, setConfirmDirty] = useState(false);
@@ -19,6 +21,7 @@ const RegisterForm = ({ form }) => {
     e.preventDefault();
     form.validateFieldsAndScroll((err, values) => {
       if (!err) {
+        history.push('/');
         dispatch(registerUser(values));
       }
     });
@@ -94,7 +97,7 @@ const RegisterForm = ({ form }) => {
         })(<Input />)}
       </Form.Item>
 
-      <Form.Item validateStatus={isLoading && 'validating'} label="Password" hasFeedback>
+      <Form.Item validateStatus={isLoading ? 'validating' : ''} label="Password" hasFeedback>
         {getFieldDecorator('password', {
           rules: [
             {
@@ -106,7 +109,7 @@ const RegisterForm = ({ form }) => {
         })(<Input.Password />)}
       </Form.Item>
 
-      <Form.Item label="Confirm Password" validateStatus={isLoading && 'validating'} hasFeedback>
+      <Form.Item label="Confirm Password" validateStatus={isLoading ? 'validating' : ''} hasFeedback>
         {getFieldDecorator('confirm', {
           rules: [
             {
@@ -142,7 +145,6 @@ const RegisterForm = ({ form }) => {
 
 RegisterForm.propTypes = {
   form: PropTypes.object.isRequired,
-  validateFieldsAndScroll: PropTypes.func.isRequired,
 };
 
 export default Form.create({ name: 'normal_register' })(RegisterForm);

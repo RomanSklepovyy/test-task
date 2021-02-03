@@ -14,3 +14,9 @@ export const register = (fullName, email, password) => (
     password,
   })
 );
+
+export const logout = (token) => (
+  API.post('/users/logout', {}, {
+    headers: { Authorization: `Bearer ${token}` },
+  })
+);

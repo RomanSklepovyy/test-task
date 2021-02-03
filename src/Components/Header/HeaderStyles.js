@@ -19,14 +19,24 @@ export const HeaderItem = styled.div`
   font-size: 15px;
 `;
 
-export const SettingsIcon = styled(Icon)`
-  margin-left: 10px;
-  font-size: 18px;
-`;
-
-export const StyledSpan = styled.span`
+export const Email = styled.span`
+  font-weight: bold;
+  color: dodgerblue;
   &:hover {
     cursor: pointer;
     color: black;
   }
+`;
+
+export const CompanySpan = styled.span`
+  color: dodgerblue;
+`;
+
+export const SettingsIcon = styled(Icon)`
+  margin-left: 10px;
+  font-size: 18px;
+  &:hover {
+  cursor: pointer;
+  color: black;
+}
 `;

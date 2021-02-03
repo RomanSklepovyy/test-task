@@ -25,3 +25,13 @@ export const registerUser = ({ fullName, email, password }) => async (dispatch) 
     dispatch(userLoadingFailureAction());
   }
 };
+
+export const logoutUser = () => async (dispatch) => {
+  try {
+    const token = localStorage.getItem('token');
+    await API.logout(token);
+    dispatch(logoutUser());
+  } catch (e) {
+    console.log(e);
+  }
+};

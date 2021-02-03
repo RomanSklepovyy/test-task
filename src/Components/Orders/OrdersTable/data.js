@@ -9,9 +9,9 @@ export const dataSource = [
     billTo: '',
     items: [
       {
-        key: '6012b6c0fee21930142aa40d',
+        key: '6012b6c0fee21930142aa40a',
         quantity: 1,
-        productId: '6012b6c0fee21930142aa40d',
+        productId: '6012b6c0fee21930142aa40a',
         unitPrice: 94,
         shippingPrice: 13.94,
         discount: 5.99,
@@ -27,7 +27,7 @@ export const dataSource = [
         description: 'computer mouse',
       },
       {
-        key: '6012b6c0fee21930142aa40d',
+        key: '6012b6c0fee21930142aa40c',
         quantity: 10,
         productId: '6012b6c0fee21930142aa40d',
         unitPrice: 13.90,
