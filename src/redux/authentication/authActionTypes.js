@@ -3,3 +3,4 @@ export const USER_LOADING_SUCCESS = 'USER_LOADING_SUCCESS';
 export const USER_LOADING_FAILURE = 'USER_LOADING_FAILURE';
 export const LOGOUT = 'LOGOUT';
 export const AUTH_ERROR = 'AUTH_ERROR';
+export const GET_USER = 'GET_USER';

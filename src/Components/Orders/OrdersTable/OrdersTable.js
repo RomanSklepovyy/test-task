@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Table } from 'antd';
-import { dataSource } from './data';
+import { useSelector } from 'react-redux';
 import OrderDescription from './OrderDescriptionTable/OrderDescriptionTable';
 import getColumns from './getOrdersColumn';
 
 const OrdersTable = () => {
+  const orders = useSelector((state) => state.order.orders);
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const [sortedInfo, setSortedInfo] = useState({});
 
@@ -25,8 +26,9 @@ const OrdersTable = () => {
     <Table
       rowSelection={rowSelection}
       columns={getColumns(sortedInfo)}
-      dataSource={dataSource}
+      dataSource={orders}
       onChange={handleChange}
+      rowKey="_id"
       bordered
       expandedRowRender={(record) => <OrderDescription items={record.items} />}
     />

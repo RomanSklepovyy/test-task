@@ -12,3 +12,5 @@ export const userLoadingFailureAction = () => ({ type: types.USER_LOADING_FAILUR
 export const authErrorAction = () => ({ type: types.AUTH_ERROR });
 
 export const logoutAction = () => ({ type: types.LOGOUT });
+
+export const getUser = (payload) => ({ type: types.GET_USER, payload });

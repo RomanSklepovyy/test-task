@@ -32,6 +32,12 @@ const authReducer = (state = initialState, action) => {
         isLoading: false,
         user: action.payload.user,
       };
+    case types.GET_USER:
+      return {
+        ...state,
+        isAuthenticated: true,
+        user: action.payload.user,
+      };
     case types.USER_LOADING_FAILURE:
     case types.AUTH_ERROR:
     case types.LOGOUT:

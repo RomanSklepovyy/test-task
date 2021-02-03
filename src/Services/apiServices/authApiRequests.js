@@ -1,15 +1,15 @@
 import apiHelper from './apiHelper';
 
-export const login = (email, password) => {
-  return apiHelper.request({
+export const login = (email, password) => (
+  apiHelper.request({
     url: '/auth/login',
     method: 'post',
     data: {
       email,
       password,
     },
-  });
-};
+  })
+);
 
 export const register = (fullName, email, password) => (
   apiHelper.request({
@@ -20,6 +20,13 @@ export const register = (fullName, email, password) => (
       email,
       password,
     },
+  })
+);
+
+export const getUserByToken = () => (
+  apiHelper.requestWithAuth({
+    url: '/users',
+    method: 'get',
   })
 );
 

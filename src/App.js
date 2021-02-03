@@ -3,7 +3,7 @@ import 'antd/dist/antd.css';
 import styled from 'styled-components';
 import { BrowserRouter } from 'react-router-dom';
 import { Layout } from 'antd';
-import Sidebar from './Components/Sidebar';
+import Sidebar from './Components/Sidebar/Sidebar';
 import ContentRouter from './Routes/Router';
 import Header from './Components/Header/Header';
 
@@ -19,6 +19,7 @@ const StyledContent = styled(Content)`
 `;
 
 function App() {
+
   return (
     <BrowserRouter>
       <StyledLayout>

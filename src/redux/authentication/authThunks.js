@@ -1,4 +1,5 @@
 import {
+  getUser,
   userLoadingAction,
   userLoadingFailureAction,
   userLoadingSuccessAction,
@@ -32,6 +33,16 @@ export const logoutUser = () => async (dispatch) => {
   try {
     await authAPI.logout();
     dispatch(logoutUser());
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const loginUserByToken = () => async (dispatch) => {
+  try {
+    const res = await authAPI.getUserByToken();
+    console.log(res);
+    dispatch(getUser({ user: res.data }));
   } catch (e) {
     console.log(e);
   }

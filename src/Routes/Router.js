@@ -9,15 +9,17 @@ import Systems from '../Components/Systems/Systems';
 import Login from '../Components/Login/Login';
 import Register from '../Components/Register/Register';
 import PrivateRoute from './PrivateRoute';
+import CreateOrder from '../Components/OrderForm/CreateOrder';
 
 const ContentRouter = () => (
   <Switch>
     <Route exact path="/" render={() => (<h1>Main page</h1>)} />
     <PrivateRoute path="/dashboard" component={Dashboard} />
-    <PrivateRoute path="/orders" component={Order} />
+    <PrivateRoute exact path="/orders" component={Order} />
     <PrivateRoute path="/products" component={Products} />
     <PrivateRoute path="/members" component={Members} />
     <PrivateRoute path="/connections" component={Connections} />
+    <PrivateRoute path="/orders/create" component={CreateOrder} />
     <PrivateRoute path="/systems" component={Systems} />
     <Route path="/login" component={Login} />
     <Route path="/signup" component={Register} />

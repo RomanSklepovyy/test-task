@@ -1,6 +1,6 @@
 export const dataSource = [
   {
-    key: '1',
+    _id: '1',
     status: 'crated',
     description: 'some important stuff',
     email: 'auser@mail.com',
@@ -9,7 +9,7 @@ export const dataSource = [
     billTo: '',
     items: [
       {
-        key: '6012b6c0fee21930142aa40a',
+        _id: '6012b6c0fee21930142aa40a',
         quantity: 1,
         productId: '6012b6c0fee21930142aa40a',
         unitPrice: 94,
@@ -18,7 +18,7 @@ export const dataSource = [
         description: 'gamepad',
       },
       {
-        key: '6012b6c0fee21930142aa40d',
+        _id: '6012b6c0fee21930142aa40d',
         quantity: 6,
         productId: '6012b6c0fee21930142aa40d',
         unitPrice: 82.23,
@@ -27,7 +27,7 @@ export const dataSource = [
         description: 'computer mouse',
       },
       {
-        key: '6012b6c0fee21930142aa40c',
+        _id: '6012b6c0fee21930142aa40c',
         quantity: 10,
         productId: '6012b6c0fee21930142aa40d',
         unitPrice: 13.90,
@@ -40,7 +40,7 @@ export const dataSource = [
     updatedAt: new Date('2021-01-28 10:20:52.672Z').toLocaleString(),
   },
   {
-    key: '2',
+    _id: '2',
     status: 'done',
     description: 'very very important stuff',
     email: 'buser@mail.com',
@@ -52,7 +52,7 @@ export const dataSource = [
     updatedAt: new Date('2021-01-28 12:31:22.937Z').toLocaleString(),
   },
   {
-    key: '3',
+    _id: '3',
     status: 'in progress',
     description: 'delivering 562',
     email: 'cuser@mail.com',
