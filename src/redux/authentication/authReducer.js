@@ -1,8 +1,16 @@
 import * as types from './authActionTypes';
+import {
+  getAccessToken,
+  getRefreshToken,
+  removeAccessToken,
+  removeRefreshToken,
+  setAccessToken,
+  setRefreshToken,
+} from '../../Services/authServices/tokenHelper';
 
 const initialState = {
-  token: localStorage.getItem('token'),
-  refreshToken: localStorage.getItem('refreshToken'),
+  token: getAccessToken(),
+  refreshToken: getRefreshToken(),
   isAuthenticated: false,
   isLoading: false,
   user: null,
@@ -16,8 +24,8 @@ const authReducer = (state = initialState, action) => {
         isLoading: true,
       };
     case types.USER_LOADING_SUCCESS:
-      localStorage.setItem('token', action.payload.token);
-      localStorage.setItem('token', action.payload.refreshToken);
+      setAccessToken(action.payload.token);
+      setRefreshToken(action.payload.refreshToken);
       return {
         ...state,
         isAuthenticated: true,
@@ -27,8 +35,8 @@ const authReducer = (state = initialState, action) => {
     case types.USER_LOADING_FAILURE:
     case types.AUTH_ERROR:
     case types.LOGOUT:
-      localStorage.removeItem('token');
-      localStorage.removeItem('refreshToken');
+      removeAccessToken();
+      removeRefreshToken();
       return {
         ...state,
         token: null,

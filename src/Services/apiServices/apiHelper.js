@@ -1,9 +1,7 @@
 import axios from 'axios';
-import mergeDeepRight from 'ramda/src/mergeDeepRight';
-
 import { getAccessToken } from '../authServices/tokenHelper';
 
-const axiosBaseConfig = axios.create({
+const API = axios.create({
   baseURL: process.env.REACT_APP_API_BASE_URL,
   responseType: 'json',
 });
@@ -11,18 +9,30 @@ const axiosBaseConfig = axios.create({
 const apiHelper = {
   async request(config) {
     try {
-      const res = await axiosBaseConfig.request(config);
+      const res = await API(config);
       return res;
-    } catch (e) {
-      return { error: { message: e.message } };
+    } catch (error) {
+      return { error: { statusCode: error.response.status, message: error.message } };
     }
   },
 
   async requestWithAuth(config) {
-    const authConfig = { headers: { Authorization: `Bearer ${getAccessToken()}` } };
-    const axiosConfig = mergeDeepRight(config, authConfig);
-    const res = this.request(axiosConfig);
-    return res;
+    const token = getAccessToken();
+    if (!token) return { error: { statusCode: 401, message: 'Unauthorized.' } };
+
+    const authHeader = `Bearer ${token}`;
+
+    const headers = {
+      ...config.headers,
+      Authorization: authHeader,
+    };
+
+    try {
+      const res = await this.request({ ...config, headers });
+      return res;
+    } catch (e) {
+      return e;
+    }
   },
 };
 
