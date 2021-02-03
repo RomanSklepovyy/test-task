@@ -4,12 +4,13 @@ import {
   userLoadingSuccessAction,
 }
   from './authActions';
-import * as API from '../../Services/apiRequests';
+import * as authAPI from '../../Services/apiServices/authApiRequests';
 
 export const loginUser = ({ email, password }) => async (dispatch) => {
   try {
     dispatch(userLoadingAction());
-    const res = await API.login(email, password);
+    const res = await authAPI.login(email, password);
+    console.log(res);
     dispatch(userLoadingSuccessAction(res.data.user, res.data.token, res.data.refreshToken));
   } catch (error) {
     dispatch(userLoadingFailureAction());
@@ -19,7 +20,8 @@ export const loginUser = ({ email, password }) => async (dispatch) => {
 export const registerUser = ({ fullName, email, password }) => async (dispatch) => {
   try {
     dispatch(userLoadingAction());
-    const res = await API.register(fullName, email, password);
+    const res = await authAPI.register(fullName, email, password);
+    console.log(res);
     dispatch(userLoadingSuccessAction(res.data.user, res.data.token, res.data.refreshToken));
   } catch (e) {
     dispatch(userLoadingFailureAction());
@@ -28,8 +30,7 @@ export const registerUser = ({ fullName, email, password }) => async (dispatch) 
 
 export const logoutUser = () => async (dispatch) => {
   try {
-    const token = localStorage.getItem('token');
-    await API.logout(token);
+    await authAPI.logout();
     dispatch(logoutUser());
   } catch (e) {
     console.log(e);
