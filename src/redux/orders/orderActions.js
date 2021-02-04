@@ -20,4 +20,16 @@ export const deleteOrdersSuccessAction = (payload) => ({
   type: types.DELETE_ORDER_SUCCESS, payload,
 });
 
+export const addIdToSelectedAction = (payload) => ({
+  type: types.ADD_ORDER_ID_TO_SELECTED, payload,
+});
+
+export const removeIdFromSelectedAction = (payload) => ({
+  type: types.REMOVE_ORDER_ID_FROM_SELECTED, payload,
+});
+
+export const clearSelected = (payload) => ({
+  type: types.CLEAR_SELECTED, payload,
+});
+
 export const setOrderError = (payload) => ({ type: types.ORDER_ERROR, payload });

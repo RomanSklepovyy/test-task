@@ -19,3 +19,9 @@ export const updateOrder = (order) => (
     method: 'put',
     data: order,
   }));
+
+export const deleteOrder = (orderId) => (
+  apiHelper.requestWithAuth({
+    url: `/orders/${orderId}`,
+    method: 'delete',
+  }));

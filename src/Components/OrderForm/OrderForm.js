@@ -8,11 +8,8 @@ import getAddressFields from './helpers/getAddressFieldsHelper';
 import getOrderFieldsHelper from './helpers/getOrderFieldsHelper';
 import getLineItemsFields from './helpers/getLineItemsFields';
 import { StyledOrderForm, StyledSpan } from '../../Styles/orderForm';
-import { createOrderWithFormData } from '../../Services/OrderServices/createOrderWithFormData';
-import { createOrderThunk } from '../../redux/orders/orderThunks';
 
 const OrderForm = ({ form, handleSubmit }) => {
-  const dispatch = useDispatch();
   const updatingOrder = useSelector((state) => state.order.updatingOrder);
 
   const handleCreate = (e) => {

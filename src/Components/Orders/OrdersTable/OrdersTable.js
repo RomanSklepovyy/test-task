@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Table } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import OrderDescription from './OrderDescriptionTable/OrderDescriptionTable';
 import getColumns from './getOrdersColumn';
-import { useHistory } from 'react-router-dom';
 
 const OrdersTable = () => {
   const dispatch = useDispatch();
