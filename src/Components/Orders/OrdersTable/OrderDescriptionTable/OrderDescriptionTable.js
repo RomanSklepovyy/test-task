@@ -12,7 +12,7 @@ const OrderDescriptionTable = (props) => {
         size="small"
         columns={columns}
         dataSource={items}
-        rowKey="_id"
+        rowKey="productId"
         bordered
       />
     </div>

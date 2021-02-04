@@ -30,7 +30,7 @@ const OrdersTable = () => {
       onChange={handleChange}
       rowKey="_id"
       bordered
-      expandedRowRender={(record) => <OrderDescription items={record.items} />}
+      expandedRowRender={(record) => <OrderDescription items={record.lineItems} />}
     />
   );
 };

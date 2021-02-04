@@ -1,32 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
 import {
   Form, Row, Col, Button,
 } from 'antd';
 import getAddressFields from './helpers/getAddressFieldsHelper';
 import getOrderFieldsHelper from './helpers/getOrderFieldsHelper';
 import getLineItemsFields from './helpers/getLineItemsFields';
-
-const StyledOrderForm = styled(Form)`
-  padding: 24px;
-  background: #fbfbfb;
-  border: 1px solid #d9d9d9;
-  border-radius: 6px;
-`;
-
-const StyledSpan = styled.div`
-  font-weight: bolder;
-  font-size: 18px;
-  margin-bottom: 20px;
-`;
+import { StyledOrderForm, StyledSpan } from '../../Styles/orderForm';
+import { createOrderWithFormData } from '../../Services/OrderServices/createOrderWithFormData';
+import { createOrderThunk } from '../../redux/orders/orderThunks';
 
 const OrderForm = ({ form }) => {
+  const dispatch = useDispatch();
+
   const handleSearch = (e) => {
     e.preventDefault();
 
     form.validateFields((err, values) => {
-      console.log('Received values of form: ', values);
+      const order = createOrderWithFormData(values);
+      console.log('object from form: ', order);
+      dispatch(createOrderThunk(order));
     });
   };
 

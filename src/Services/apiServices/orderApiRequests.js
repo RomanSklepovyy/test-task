@@ -5,3 +5,10 @@ export const getOrders = () => (
     url: '/orders',
     method: 'get',
   }));
+
+export const createOrder = (order) => (
+  apiHelper.requestWithAuth({
+    url: '/orders',
+    method: 'post',
+    data: order,
+  }));

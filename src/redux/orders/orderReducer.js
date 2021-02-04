@@ -19,17 +19,23 @@ const orderReducer = (state = initialState, action) => {
         isLoading: false,
         orders: action.payload.orders,
       };
+    case types.CREATE_ORDER_SUCCESS:
+      return {
+        ...state,
+        orders: state.order.orders.unshift(action.payload.order),
+        isLoading: false,
+      };
     case types.DELETE_ORDER_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        orders: state.orders.filter((order) => order._id !== action.payload.order._id),
+        orders: state.order.orders.filter((order) => order._id !== action.payload.order._id),
       };
     case types.UPDATE_ORDER_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        orders: state.orders.map((order) => (
+        orders: state.order.orders.map((order) => (
           order._id === action.payload.order._id
             ? action.payload.order
             : order

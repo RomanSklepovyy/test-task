@@ -2,14 +2,14 @@ import { Col, Form, Input } from 'antd';
 import React from 'react';
 
 const getAddressFields = (form) => {
-  const addressFields = ['ID', 'quantity', 'price', 'shipping price', 'discount',
+  const addressFields = ['ID', 'quantity', 'price', 'shipping', 'discount',
     'description'];
   const children = [];
 
   for (let i = 0; i < addressFields.length; i += 1) {
     let type = 'number';
 
-    if (addressFields[i] === 'description') {
+    if (addressFields[i] === 'description' || addressFields[i] === 'ID') {
       type = 'string';
     }
 
@@ -18,7 +18,7 @@ const getAddressFields = (form) => {
         <Form.Item label={addressFields[i]}>
           {form.getFieldDecorator(addressFields[i], {
             getValueFromEvent: (e) => {
-              if (type !== 'string') return e.currentTarget.value;
+              if (type === 'string') return e.currentTarget.value;
               const convertedValue = Number(e.currentTarget.value);
               if (isNaN(convertedValue)) {
                 return Number(form.getFieldValue(addressFields[i]));

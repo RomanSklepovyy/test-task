@@ -2,7 +2,7 @@ import { Col, Form, Input } from 'antd';
 import React from 'react';
 
 const getOrderFields = (form) => {
-  const orderFields = ['Status', 'Description'];
+  const orderFields = ['status', 'description'];
   const children = [];
 
   for (let i = 0; i < orderFields.length; i += 1) {
