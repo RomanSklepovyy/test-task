@@ -1,10 +1,40 @@
 import axios from 'axios';
-import { getAccessToken } from '../authServices/tokenHelper';
+import {getAccessToken, getRefreshToken, setAccessToken} from '../authServices/tokenHelper';
 
 const API = axios.create({
   baseURL: process.env.REACT_APP_API_BASE_URL,
   responseType: 'json',
 });
+
+API.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    const originalRequest = error.config;
+    const refreshToken = getRefreshToken();
+
+    if (
+      refreshToken
+      && error.response.status === 401
+      && !originalRequest._retry
+    ) {
+      originalRequest._retry = true;
+      return API({
+        url: '/auth/token',
+        method: 'post',
+        headers: {
+          Authorization: refreshToken,
+        },
+      }).then((res) => {
+        if (res.status === 200) {
+          setAccessToken(res.data.accessToken);
+          return API(originalRequest);
+        }
+        return Promise.reject(error);
+      });
+    }
+    return Promise.reject(error);
+  },
+);
 
 const apiHelper = {
   async request(config) {

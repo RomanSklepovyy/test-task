@@ -1,7 +1,7 @@
 import { Col, Form, Input } from 'antd';
 import React from 'react';
 
-const getOrderFields = (form) => {
+const getOrderFields = (form, order) => {
   const orderFields = ['status', 'description'];
   const children = [];
 
@@ -10,6 +10,7 @@ const getOrderFields = (form) => {
       <Col span={8} key={i} style={{ display: 'block' }}>
         <Form.Item label={orderFields[i]}>
           {form.getFieldDecorator(orderFields[i], {
+            initialValue: order && order[orderFields[i]],
             rules: [
               {
                 required: true,

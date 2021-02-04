@@ -20,6 +20,11 @@ const orderReducer = (state = initialState, action) => {
         ...state,
         updatingOrder: action.payload.order,
       };
+    case types.REMOVE_UPDATING_ORDER:
+      return {
+        ...state,
+        updatingOrder: null,
+      };
     case types.GET_ORDERS_SUCCESS:
       return {
         ...state,

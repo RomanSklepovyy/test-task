@@ -12,3 +12,10 @@ export const createOrder = (order) => (
     method: 'post',
     data: order,
   }));
+
+export const updateOrder = (order) => (
+  apiHelper.requestWithAuth({
+    url: `/orders/${order._id}`,
+    method: 'put',
+    data: order,
+  }));

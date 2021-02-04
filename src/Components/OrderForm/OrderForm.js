@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Form, Row, Col, Button,
 } from 'antd';
@@ -11,16 +11,17 @@ import { StyledOrderForm, StyledSpan } from '../../Styles/orderForm';
 import { createOrderWithFormData } from '../../Services/OrderServices/createOrderWithFormData';
 import { createOrderThunk } from '../../redux/orders/orderThunks';
 
-const OrderForm = ({ form }) => {
+const OrderForm = ({ form, handleSubmit }) => {
   const dispatch = useDispatch();
+  const updatingOrder = useSelector((state) => state.order.updatingOrder);
 
-  const handleSearch = (e) => {
+  const handleCreate = (e) => {
     e.preventDefault();
 
     form.validateFields((err, values) => {
-      const order = createOrderWithFormData(values);
-      console.log('object from form: ', order);
-      dispatch(createOrderThunk(order));
+      if (!err) {
+        handleSubmit(values);
+      }
     });
   };
 
@@ -29,13 +30,13 @@ const OrderForm = ({ form }) => {
   };
 
   return (
-    <StyledOrderForm onSubmit={handleSearch}>
+    <StyledOrderForm onSubmit={handleCreate}>
       <StyledSpan>Order info:</StyledSpan>
-      <Row gutter={24}>{getOrderFieldsHelper(form)}</Row>
+      <Row gutter={24}>{getOrderFieldsHelper(form, updatingOrder)}</Row>
       <StyledSpan>Line item info:</StyledSpan>
-      <Row gutter={24}>{getLineItemsFields(form)}</Row>
+      <Row gutter={24}>{getLineItemsFields(form, updatingOrder)}</Row>
       <StyledSpan>Address info:</StyledSpan>
-      <Row gutter={24}>{getAddressFields(form)}</Row>
+      <Row gutter={24}>{getAddressFields(form, updatingOrder)}</Row>
       <Row>
         <Col span={24} style={{ textAlign: 'right' }}>
           <Button type="primary" htmlType="submit">
@@ -52,6 +53,7 @@ const OrderForm = ({ form }) => {
 
 OrderForm.propTypes = {
   form: PropTypes.object.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 };
 
 export default Form.create({ name: 'advanced_search' })(OrderForm);

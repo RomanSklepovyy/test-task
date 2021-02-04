@@ -9,7 +9,8 @@ import Systems from '../Components/Systems/Systems';
 import Login from '../Components/Login/Login';
 import Register from '../Components/Register/Register';
 import PrivateRoute from './PrivateRoute';
-import CreateOrder from '../Components/OrderForm/CreateOrder';
+import CreateOrderForm from '../Components/CreateOrderForm/CreateOrderForm';
+import UpdateOrderForm from '../Components/UpdateOrderFrom/UpdateOrderForm';
 
 const ContentRouter = () => (
   <Switch>
@@ -19,7 +20,8 @@ const ContentRouter = () => (
     <PrivateRoute path="/products" component={Products} />
     <PrivateRoute path="/members" component={Members} />
     <PrivateRoute path="/connections" component={Connections} />
-    <PrivateRoute path="/orders/create" component={CreateOrder} />
+    <PrivateRoute path="/orders/create" component={CreateOrderForm} />
+    <PrivateRoute path="/orders/update" component={UpdateOrderForm} />
     <PrivateRoute path="/systems" component={Systems} />
     <Route path="/login" component={Login} />
     <Route path="/signup" component={Register} />

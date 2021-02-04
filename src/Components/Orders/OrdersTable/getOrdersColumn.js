@@ -37,8 +37,7 @@ const getOrdersColumn = (sortedInfo, dispatch, history) => [
   },
   {
     key: 'update',
-    fixed: 'right',
-    width: 50,
+    width: 80,
     // eslint-disable-next-line react/react-in-jsx-scope
     render: (text, order) => {
       const onEditHandler = () => {

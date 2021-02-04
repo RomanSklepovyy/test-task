@@ -6,11 +6,13 @@ export const getOrdersSuccessAction = (payload) => ({ type: types.GET_ORDERS_SUC
 
 export const setUpdatingOrder = (payload) => ({ type: types.SET_UPDATING_ORDER, payload });
 
+export const removeUpdatingOrder = () => ({ type: types.REMOVE_UPDATING_ORDER });
+
 export const createOrdersSuccessAction = (payload) => ({
   type: types.UPDATE_ORDER_SUCCESS, payload,
 });
 
-export const updateOrdersSuccessAction = (payload) => ({
+export const updateOrderSuccessAction = (payload) => ({
   type: types.UPDATE_ORDER_SUCCESS, payload,
 });
 
