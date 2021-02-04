@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 
 const PrivateRoute = ({ component, ...rest }) => {
   const isAuthenticated = useSelector((state) => state.authentication.isAuthenticated);
-  console.log(isAuthenticated);
   return (
     <Route
       {...rest}

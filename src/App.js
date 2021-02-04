@@ -16,10 +16,10 @@ const StyledContent = styled(Content)`
   background-color: white;
   padding: 20px;
   margin: 20px;
+  overflow-y: auto;
 `;
 
 function App() {
-
   return (
     <BrowserRouter>
       <StyledLayout>

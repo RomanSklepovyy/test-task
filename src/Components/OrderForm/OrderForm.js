@@ -1,10 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import {
   Form, Row, Col, Button,
 } from 'antd';
+import getAddressFields from './helpers/getAddressFieldsHelper';
+import getOrderFieldsHelper from './helpers/getOrderFieldsHelper';
+import getLineItemsFields from './helpers/getLineItemsFields';
 
-import getFieldsHelper from './getFieldsHelper';
+const StyledOrderForm = styled(Form)`
+  padding: 24px;
+  background: #fbfbfb;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+`;
+
+const StyledSpan = styled.div`
+  font-weight: bolder;
+  font-size: 18px;
+  margin-bottom: 20px;
+`;
 
 const OrderForm = ({ form }) => {
   const handleSearch = (e) => {
@@ -20,19 +35,24 @@ const OrderForm = ({ form }) => {
   };
 
   return (
-    <Form className="ant-advanced-search-form" onSubmit={handleSearch}>
-      <Row gutter={18}>{getFieldsHelper(form.getFieldDecorator)}</Row>
+    <StyledOrderForm onSubmit={handleSearch}>
+      <StyledSpan>Order info:</StyledSpan>
+      <Row gutter={24}>{getOrderFieldsHelper(form)}</Row>
+      <StyledSpan>Line item info:</StyledSpan>
+      <Row gutter={24}>{getLineItemsFields(form)}</Row>
+      <StyledSpan>Address info:</StyledSpan>
+      <Row gutter={24}>{getAddressFields(form)}</Row>
       <Row>
-        <Col span={18} style={{ textAlign: 'right' }}>
+        <Col span={24} style={{ textAlign: 'right' }}>
           <Button type="primary" htmlType="submit">
-            Search
+            Send
           </Button>
           <Button style={{ marginLeft: 8 }} onClick={handleReset}>
             Clear
           </Button>
         </Col>
       </Row>
-    </Form>
+    </StyledOrderForm>
   );
 };
 
