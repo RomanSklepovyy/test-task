@@ -4,6 +4,8 @@ export const setTableLoading = () => ({ type: types.SET_TABLE_LOADING });
 
 export const getOrdersSuccessAction = (payload) => ({ type: types.GET_ORDERS_SUCCESS, payload });
 
+export const setUpdatingOrder = (payload) => ({ type: types.SET_UPDATING_ORDER, payload });
+
 export const createOrdersSuccessAction = (payload) => ({
   type: types.UPDATE_ORDER_SUCCESS, payload,
 });

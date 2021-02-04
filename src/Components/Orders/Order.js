@@ -8,6 +8,11 @@ import { getOrdersThunk } from '../../redux/orders/orderThunks';
 
 const ButtonContainer = styled.div`
   margin: 15px 0;
+  display: flex;
+`;
+
+const ActionButton = styled(Button)`
+  margin-left: 15px;
 `;
 
 const Order = () => {
@@ -22,10 +27,15 @@ const Order = () => {
     history.push('/orders/create');
   };
 
+  const handleDeleteClick = () => {
+    console.log('deleting...');
+  };
+
   return (
     <>
       <ButtonContainer>
-        <Button onClick={handleCreateClick} type="primary">Create order</Button>
+        <ActionButton onClick={handleCreateClick} type="primary">Create order</ActionButton>
+        <ActionButton onClick={handleDeleteClick}>Delete selected</ActionButton>
       </ButtonContainer>
       <OrdersTable />
     </>

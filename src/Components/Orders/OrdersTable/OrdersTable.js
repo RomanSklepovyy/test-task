@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { Table } from 'antd';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import OrderDescription from './OrderDescriptionTable/OrderDescriptionTable';
 import getColumns from './getOrdersColumn';
+import { useHistory } from 'react-router-dom';
 
 const OrdersTable = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
   const orders = useSelector((state) => state.order.orders);
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const [sortedInfo, setSortedInfo] = useState({});
@@ -25,7 +28,7 @@ const OrdersTable = () => {
   return (
     <Table
       rowSelection={rowSelection}
-      columns={getColumns(sortedInfo)}
+      columns={getColumns(sortedInfo, dispatch, history)}
       dataSource={orders}
       onChange={handleChange}
       rowKey="_id"

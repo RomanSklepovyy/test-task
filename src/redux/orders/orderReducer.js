@@ -4,6 +4,8 @@ const initialState = {
   orders: [],
   error: '',
   isLoading: false,
+  selected: [],
+  updatingOrder: null,
 };
 
 const orderReducer = (state = initialState, action) => {
@@ -12,6 +14,11 @@ const orderReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: true,
+      };
+    case types.SET_UPDATING_ORDER:
+      return {
+        ...state,
+        updatingOrder: action.payload.order,
       };
     case types.GET_ORDERS_SUCCESS:
       return {
@@ -35,6 +42,7 @@ const orderReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
+        updatingOrder: null,
         orders: state.order.orders.map((order) => (
           order._id === action.payload.order._id
             ? action.payload.order

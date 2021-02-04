@@ -9,6 +9,7 @@ const storeEnhancers = typeof window === 'object' && window.__REDUX_DEVTOOLS_EXT
 
 const persistConfig = {
   key: 'root',
+  whitelist: 'authentication',
   storage,
 };
 
