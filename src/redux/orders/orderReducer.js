@@ -61,7 +61,6 @@ const orderReducer = (state = initialState, action) => {
         error: action.payload.error,
       };
     case types.SET_ORDERS_ID_TO_SELECTED:
-      console.log(action);
       return {
         ...state,
         selected: action.payload.selected,

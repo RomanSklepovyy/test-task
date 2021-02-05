@@ -6,7 +6,7 @@ const getAddressFields = (form, order) => {
   const itemFields = ['ID', 'quantity', 'price', 'shipping price', 'discount',
     'description'];
   const itemNames = ['productId', 'quantity', 'unitPrice', 'shippingPrice', 'discount',
-    'description'];
+    'itemDescription'];
   const children = [];
 
   for (let i = 0; i < itemFields.length; i += 1) {

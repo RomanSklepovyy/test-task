@@ -1,7 +1,7 @@
 export const createOrderWithFormData = (values) => {
   const {
     status, address1, address2, address3, city, phone,
-    company, country, description, discount, email,
+    company, country, description, discount, email, itemDescription,
     unitPrice, quantity, shippingPrice, state, zip, productId, fullName,
   } = values;
 
@@ -28,7 +28,7 @@ export const createOrderWithFormData = (values) => {
         unitPrice,
         shippingPrice,
         discount,
-        description,
+        description: itemDescription,
       },
     ],
   };
