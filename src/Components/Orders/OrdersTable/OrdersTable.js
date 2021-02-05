@@ -4,25 +4,26 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import OrderDescription from './OrderDescriptionTable/OrderDescriptionTable';
 import getColumns from './getOrdersColumn';
+import { setSelectedAction } from '../../../redux/orders/orderActions';
 
 const OrdersTable = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const orders = useSelector((state) => state.order.orders);
-  const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+  const selected = useSelector((state) => state.order.selected);
   const [sortedInfo, setSortedInfo] = useState({});
 
   const handleChange = (pagination, filters, sorter) => {
     setSortedInfo(sorter);
   };
 
-  const onSelectChange = (selectedRows) => {
-    setSelectedRowKeys(selectedRows);
+  const onChangeSelected = (selectedRowKeys) => {
+    dispatch(setSelectedAction({ selected: selectedRowKeys }));
   };
 
   const rowSelection = {
-    selectedRowKeys,
-    onChange: onSelectChange,
+    selected,
+    onChange: onChangeSelected,
   };
 
   return (

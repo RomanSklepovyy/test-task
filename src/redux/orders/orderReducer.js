@@ -60,20 +60,11 @@ const orderReducer = (state = initialState, action) => {
         isLoading: false,
         error: action.payload.error,
       };
-    case types.ADD_ORDER_ID_TO_SELECTED:
+    case types.SET_ORDERS_ID_TO_SELECTED:
+      console.log(action);
       return {
         ...state,
-        selected: state.order.selected.push(action.payload._id),
-      };
-    case types.REMOVE_ORDER_ID_FROM_SELECTED:
-      return {
-        ...state,
-        selected: state.order.selected.filter((selected) => selected !== action.payload._id),
-      };
-    case types.CLEAR_SELECTED:
-      return {
-        ...state,
-        selected: [],
+        selected: action.payload.selected,
       };
     default:
       return state;
