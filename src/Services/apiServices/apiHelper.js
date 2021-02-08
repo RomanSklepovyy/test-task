@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {getAccessToken, getRefreshToken, setAccessToken} from '../authServices/tokenHelper';
+import { getAccessToken, getRefreshToken, setAccessToken } from '../authServices/tokenHelper';
 
 const API = axios.create({
   baseURL: process.env.REACT_APP_API_BASE_URL,

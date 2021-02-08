@@ -20,8 +20,11 @@ export const updateOrder = (order) => (
     data: order,
   }));
 
-export const deleteOrder = (orderId) => (
+export const deleteOrders = (selected) => (
   apiHelper.requestWithAuth({
-    url: `/orders/${orderId}`,
+    url: '/orders',
     method: 'delete',
+    data: {
+      selected,
+    },
   }));

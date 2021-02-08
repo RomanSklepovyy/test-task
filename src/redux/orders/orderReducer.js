@@ -37,11 +37,13 @@ const orderReducer = (state = initialState, action) => {
         orders: state.order.orders.unshift(action.payload.order),
         isLoading: false,
       };
-    case types.DELETE_ORDER_SUCCESS:
+    case types.DELETE_ORDERS_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        orders: state.order.orders.filter((order) => order._id !== action.payload._id),
+        orders: state.order.orders.reduce(
+          (acc, order) => (state.order.selected.include(order._id) ? null : acc.push(order)),
+        ),
       };
     case types.UPDATE_ORDER_SUCCESS:
       return {

@@ -16,8 +16,8 @@ export const updateOrderSuccessAction = (payload) => ({
   type: types.UPDATE_ORDER_SUCCESS, payload,
 });
 
-export const deleteOrdersSuccessAction = (payload) => ({
-  type: types.DELETE_ORDER_SUCCESS, payload,
+export const deleteOrdersSuccessAction = () => ({
+  type: types.DELETE_ORDERS_SUCCESS,
 });
 
 export const setSelectedAction = (payload) => ({

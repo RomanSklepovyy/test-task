@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useCallback, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'antd';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import OrdersTable from './OrdersTable/OrdersTable';
-import { getOrdersThunk } from '../../redux/orders/orderThunks';
+import { deleteOrdersThunk, getOrdersThunk } from '../../redux/orders/orderThunks';
 
 const ButtonContainer = styled.div`
   margin: 15px 0;
@@ -18,6 +18,7 @@ const ActionButton = styled(Button)`
 const Order = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const selected = useSelector((state) => state.order.selected);
 
   useEffect(() => {
     dispatch(getOrdersThunk());
@@ -28,7 +29,10 @@ const Order = () => {
   };
 
   const handleDeleteClick = () => {
-    console.log('deleting...');
+    if (selected.length) {
+      dispatch(deleteOrdersThunk(selected));
+      dispatch(getOrdersThunk());
+    }
   };
 
   return (
