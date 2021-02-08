@@ -9,6 +9,7 @@ const initialState = {
 };
 
 const orderReducer = (state = initialState, action) => {
+  // const { type, payload } = action;
   switch (action.type) {
     case types.SET_TABLE_LOADING:
       return {
@@ -34,7 +35,11 @@ const orderReducer = (state = initialState, action) => {
     case types.CREATE_ORDER_SUCCESS:
       return {
         ...state,
-        orders: state.order.orders.unshift(action.payload.order),
+        orders: [action.payload.order, ...state.order.orders],
+        // orders: {
+        //   ...state.order.orders,
+        //   [payload.order._id]: payload.order,
+        // },
         isLoading: false,
       };
     case types.DELETE_ORDERS_SUCCESS:

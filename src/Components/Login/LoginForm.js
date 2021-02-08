@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import {
@@ -25,9 +25,9 @@ const LoginForm = ({ form }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    form.validateFields((err, values) => {
+    form.validateFields(async (err, values) => {
       if (!err) {
-        dispatch(loginUser(values));
+        await dispatch(loginUser(values));
         history.push('/');
       }
     });
@@ -74,7 +74,7 @@ const LoginForm = ({ form }) => {
           Forgot password
         </a>
 
-        <SubmitButtonStyled type="primary" htmlType="submit" className="login-form-button">
+        <SubmitButtonStyled loading={isLoading} type="primary" htmlType="submit" className="login-form-button">
           Log in
         </SubmitButtonStyled>
 

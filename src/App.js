@@ -12,15 +12,6 @@ function App() {
   return (
     <BrowserRouter>
       <MainRoute />
-      {/* <StyledLayout> */}
-      {/*  <Sidebar /> */}
-      {/*  <Layout> */}
-      {/*    <Header /> */}
-      {/*    <StyledContent> */}
-      {/*      <ContentRouter /> */}
-      {/*    </StyledContent> */}
-      {/*  </Layout> */}
-      {/* </StyledLayout> */}
     </BrowserRouter>
   );
 }

@@ -11,6 +11,7 @@ const OrdersTable = () => {
   const history = useHistory();
   const orders = useSelector((state) => state.order.orders);
   const selected = useSelector((state) => state.order.selected);
+  const isLoading = useSelector((state) => state.order.isLoading);
   const [sortedInfo, setSortedInfo] = useState({});
 
   const handleChange = (pagination, filters, sorter) => {
@@ -34,6 +35,7 @@ const OrdersTable = () => {
       onChange={handleChange}
       rowKey="_id"
       bordered
+      loading={isLoading}
       expandedRowRender={(record) => <OrderDescription items={record.lineItems} />}
     />
   );
