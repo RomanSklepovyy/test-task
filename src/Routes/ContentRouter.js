@@ -9,10 +9,11 @@ import Systems from '../Components/Systems/Systems';
 import PrivateRoute from './PrivateRoute';
 import CreateOrderForm from '../Components/CreateOrderForm/CreateOrderForm';
 import UpdateOrderForm from '../Components/UpdateOrderFrom/UpdateOrderForm';
+import MainPage from '../Components/MainPage/MainPage';
 
 const ContentRouter = () => (
   <Switch>
-    <PrivateRoute exact path="/" render={() => (<h1>Main page</h1>)} />
+    <PrivateRoute exact path="/" component={MainPage} />
     <PrivateRoute path="/dashboard" component={Dashboard} />
     <PrivateRoute exact path="/orders" component={Order} />
     <PrivateRoute path="/products" component={Products} />
