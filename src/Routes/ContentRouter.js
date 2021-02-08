@@ -6,15 +6,13 @@ import Products from '../Components/Products/Products';
 import Members from '../Components/Members/Members';
 import Connections from '../Components/Connections/Connections';
 import Systems from '../Components/Systems/Systems';
-import Login from '../Components/Login/Login';
-import Register from '../Components/Register/Register';
 import PrivateRoute from './PrivateRoute';
 import CreateOrderForm from '../Components/CreateOrderForm/CreateOrderForm';
 import UpdateOrderForm from '../Components/UpdateOrderFrom/UpdateOrderForm';
 
 const ContentRouter = () => (
   <Switch>
-    <Route exact path="/" render={() => (<h1>Main page</h1>)} />
+    <PrivateRoute exact path="/" render={() => (<h1>Main page</h1>)} />
     <PrivateRoute path="/dashboard" component={Dashboard} />
     <PrivateRoute exact path="/orders" component={Order} />
     <PrivateRoute path="/products" component={Products} />
@@ -23,8 +21,6 @@ const ContentRouter = () => (
     <PrivateRoute path="/orders/create" component={CreateOrderForm} />
     <PrivateRoute path="/orders/update" component={UpdateOrderForm} />
     <PrivateRoute path="/systems" component={Systems} />
-    <Route path="/login" component={Login} />
-    <Route path="/signup" component={Register} />
     <Route render={() => (<h1>Not found</h1>)} />
   </Switch>
 );

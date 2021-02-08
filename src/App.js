@@ -3,22 +3,24 @@ import 'antd/dist/antd.css';
 import { BrowserRouter } from 'react-router-dom';
 import { Layout } from 'antd';
 import Sidebar from './Components/Sidebar/Sidebar';
-import ContentRouter from './Routes/Router';
+import ContentRouter from './Routes/ContentRouter';
 import Header from './Components/Header/Header';
 import { StyledLayout, StyledContent } from './Styles/app';
+import MainRoute from './Routes/MainRoute';
 
 function App() {
   return (
     <BrowserRouter>
-      <StyledLayout>
-        <Sidebar />
-        <Layout>
-          <Header />
-          <StyledContent>
-            <ContentRouter />
-          </StyledContent>
-        </Layout>
-      </StyledLayout>
+      <MainRoute />
+      {/* <StyledLayout> */}
+      {/*  <Sidebar /> */}
+      {/*  <Layout> */}
+      {/*    <Header /> */}
+      {/*    <StyledContent> */}
+      {/*      <ContentRouter /> */}
+      {/*    </StyledContent> */}
+      {/*  </Layout> */}
+      {/* </StyledLayout> */}
     </BrowserRouter>
   );
 }
