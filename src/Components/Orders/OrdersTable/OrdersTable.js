@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import OrderDescription from './OrderDescriptionTable/OrderDescriptionTable';
 import getColumns from './getOrdersColumn';
 import { setSelectedAction } from '../../../redux/orders/orderActions';
+import { getOrdersThunk } from '../../../redux/orders/orderThunks';
 
 const OrdersTable = () => {
   const dispatch = useDispatch();
@@ -15,7 +16,18 @@ const OrdersTable = () => {
   const [sortedInfo, setSortedInfo] = useState({});
 
   const handleChange = (pagination, filters, sorter) => {
+    let sortOptions = {};
+
+    if (sorter.field && sorter.order) {
+      sortOptions = {
+        sortBy: sorter.field,
+        sortType: sorter.order,
+      };
+    }
+
+    console.log(sorter);
     setSortedInfo(sorter);
+    dispatch(getOrdersThunk(sortOptions));
   };
 
   const onChangeSelected = (selectedRowKeys) => {

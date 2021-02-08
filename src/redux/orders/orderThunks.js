@@ -5,10 +5,10 @@ import {
   setTableLoading, updateOrderSuccessAction,
 } from './orderActions';
 
-export const getOrdersThunk = () => async (dispatch) => {
+export const getOrdersThunk = (options = {}) => async (dispatch) => {
   try {
     dispatch(setTableLoading());
-    const res = await orderAPI.getOrders();
+    const res = await orderAPI.getOrders(options);
     dispatch(getOrdersSuccessAction({ orders: res.data.orders }));
   } catch (error) {
     dispatch(setOrderError(error));
