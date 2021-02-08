@@ -1,11 +1,13 @@
 import * as types from './orderActionTypes';
 
 const initialState = {
-  orders: [],
+  list: {},
+  ids: [],
+  // orders: [],
   error: '',
   isLoading: false,
-  selected: [],
-  updatingOrder: null,
+  // selected: [],
+  // updatingOrder: null,
 };
 
 const orderReducer = (state = initialState, action) => {

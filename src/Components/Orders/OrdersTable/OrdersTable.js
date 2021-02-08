@@ -18,16 +18,21 @@ const OrdersTable = () => {
   const handleChange = (pagination, filters, sorter) => {
     let sortOptions = {};
 
-    if (sorter.field && sorter.order) {
-      sortOptions = {
-        sortBy: sorter.field,
-        sortType: sorter.order,
-      };
+    if ((pagination.current * pagination.pageSize) >= (orders.length - 10)) {
+      console.log('Time to load data');
     }
 
-    console.log(sorter);
-    setSortedInfo(sorter);
-    dispatch(getOrdersThunk(sortOptions));
+    if (sortedInfo.field !== sorter.field || sortedInfo.order !== sorter.order) {
+      if (sorter.field && sorter.order) {
+        sortOptions = {
+          sortBy: sorter.field,
+          sortType: sorter.order,
+        };
+      }
+
+      setSortedInfo(sorter);
+      dispatch(getOrdersThunk(sortOptions));
+    }
   };
 
   const onChangeSelected = (selectedRowKeys) => {
