@@ -28,9 +28,11 @@ const Order = () => {
     setSelected(selectedFields);
   };
 
-  const handleDeleteClick = () => {
+  const handleDeleteClick = async () => {
     if (selected.length) {
-      dispatch(deleteOrdersThunk(selected));
+      await dispatch(deleteOrdersThunk(selected));
+      setSelected([]);
+      history.go(0);
     }
   };
 

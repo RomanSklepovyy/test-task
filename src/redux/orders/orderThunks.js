@@ -41,7 +41,7 @@ export const deleteOrdersThunk = (selected) => async (dispatch) => {
   try {
     dispatch(setTableLoading());
     await orderAPI.deleteOrders(selected);
-    dispatch(deleteOrdersAction());
+    dispatch(deleteOrdersAction({ ids: selected }));
   } catch (error) {
     console.log(error);
     dispatch(setOrderError(error));

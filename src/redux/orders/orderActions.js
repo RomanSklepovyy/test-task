@@ -16,8 +16,8 @@ export const updateOrderAction = (payload) => ({
   type: types.UPDATE_ORDER, payload,
 });
 
-export const deleteOrdersAction = () => ({
-  type: types.DELETE_ORDERS,
+export const deleteOrdersAction = (payload) => ({
+  type: types.DELETE_ORDERS, payload,
 });
 
 export const setOrderError = (payload) => ({ type: types.ORDER_ERROR, payload });

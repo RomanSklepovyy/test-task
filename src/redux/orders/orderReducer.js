@@ -43,10 +43,10 @@ const orderReducer = (state = initialState, action) => {
     case types.DELETE_ORDERS:
       return {
         ...state,
-        ids: [...state.order.ids].filter((id) => !payload.ids.includes(id)),
-        list: deleteObjectKeys(state.order.list, payload.ids),
+        ids: [...state.ids].filter((id) => !payload.ids.includes(id)),
+        list: deleteObjectKeys(state.list, payload.ids),
         isLoading: false,
-        total: state.order.total - payload.ids.length,
+        total: state.total - payload.ids.length,
       };
     case types.ORDER_ERROR:
       return {
