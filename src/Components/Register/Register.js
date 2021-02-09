@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import RegisterForm from './RegisterForm';
-import FormHeader from '../../Styles/formHeader';
+import FormHeader from '../../styles/formHeader';
 
 const FormContainer = styled.div`
   max-width: 640px;

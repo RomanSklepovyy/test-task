@@ -2,8 +2,8 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import OrderForm from '../OrderForm/OrderForm';
-import FormHeader from '../../Styles/formHeader';
-import { createOrderWithFormData } from '../../Services/OrderServices/createOrderWithFormData';
+import FormHeader from '../../styles/formHeader';
+import { createOrderWithFormData } from '../../services/OrderServices/createOrderWithFormData';
 import { createOrderThunk } from '../../redux/orders/orderThunks';
 
 const CreateOrderForm = () => {

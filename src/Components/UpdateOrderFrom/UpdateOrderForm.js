@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import OrderForm from '../OrderForm/OrderForm';
-import FormHeader from '../../Styles/formHeader';
+import FormHeader from '../../styles/formHeader';
 import { removeUpdatingOrder } from '../../redux/orders/orderActions';
-import { createOrderWithFormData } from '../../Services/OrderServices/createOrderWithFormData';
+import { createOrderWithFormData } from '../../services/OrderServices/createOrderWithFormData';
 import { updateOrderThunk } from '../../redux/orders/orderThunks';
 
 const UpdateOrderForm = () => {

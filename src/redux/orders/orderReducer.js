@@ -1,85 +1,64 @@
 import * as types from './orderActionTypes';
+import deleteObjectKeys from '../../utils/deleteObjectKeys';
 
 const initialState = {
-  // list: {},
-  // ids: [],
-  count: 0,
-  orders: [],
+  list: {},
+  ids: [],
   error: '',
   isLoading: false,
-  selected: [],
-  updatingOrder: null,
+  total: 0,
 };
 
 const orderReducer = (state = initialState, action) => {
   const { type, payload } = action;
+
   switch (type) {
+    case types.CREATE_ORDER:
+      return {
+        ...state,
+        list: {
+          ...state.order.list,
+          [payload.order._id]: payload.order,
+        },
+        ids: [...state.order.ids, payload.order._id],
+        isLoading: false,
+        total: state.order.total + 1,
+      };
+    case types.GET_ORDERS:
+      return {
+        ...state,
+        list: payload.orders.list,
+        ids: payload.orders.ids,
+        isLoading: false,
+        total: payload.total,
+      };
+    case types.UPDATE_ORDER:
+      return {
+        ...state,
+        list: {
+          [payload.order._id]: payload.order,
+        },
+        isLoading: false,
+      };
+    case types.DELETE_ORDERS:
+      return {
+        ...state,
+        ids: [...state.order.ids].filter((id) => !payload.ids.includes(id)),
+        list: deleteObjectKeys(state.order.list, payload.ids),
+        isLoading: false,
+        total: state.order.total - payload.ids.length,
+      };
+    case types.ORDER_ERROR:
+      return {
+        ...state,
+        error: payload.error,
+      };
     case types.SET_TABLE_LOADING:
       return {
         ...state,
         isLoading: true,
       };
-    case types.SET_UPDATING_ORDER:
-      return {
-        ...state,
-        updatingOrder: payload.order,
-      };
-    case types.REMOVE_UPDATING_ORDER:
-      return {
-        ...state,
-        updatingOrder: null,
-      };
-    case types.GET_ORDERS_SUCCESS:
-      return {
-        ...state,
-        count: payload.count,
-        isLoading: false,
-        orders: payload.orders,
-      };
-    case types.CREATE_ORDER_SUCCESS:
-      return {
-        ...state,
-        count: state.order.count + 1,
-        orders: [payload.order, ...state.order.orders],
-        // orders: {
-        //   ...state.order.orders,
-        //   [payload.order._id]: payload.order,
-        // },
-        isLoading: false,
-      };
-    case types.DELETE_ORDERS_SUCCESS:
-      return {
-        ...state,
-        isLoading: false,
-        count: state.count - state.selected.length,
-        orders: state.orders.reduce(
-          (acc, order) => (state.selected.includes(order._id) ? acc : [...acc, order]), [],
-        ),
-      };
-    case types.UPDATE_ORDER_SUCCESS:
-      return {
-        ...state,
-        isLoading: false,
-        updatingOrder: null,
-        orders: state.order.orders.map((order) => (
-          order._id === action.payload.order._id
-            ? payload.order
-            : order
-        )),
-      };
-    case types.ORDER_ERROR:
-      return {
-        ...state,
-        isLoading: false,
-        error: payload.error,
-      };
-    case types.SET_ORDERS_ID_TO_SELECTED:
-      return {
-        ...state,
-        selected: payload.selected,
-      };
-    default:
-      return state;
+    default: return state;
   }
 };
 

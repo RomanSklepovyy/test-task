@@ -1,6 +1,6 @@
 import React from 'react';
 import LoginForm from './LoginForm';
-import FormHeader from '../../Styles/formHeader';
+import FormHeader from '../../styles/formHeader';
 
 const Login = () => (
   <>

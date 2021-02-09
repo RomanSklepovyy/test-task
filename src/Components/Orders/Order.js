@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'antd';
 import styled from 'styled-components';
@@ -18,10 +18,14 @@ const ActionButton = styled(Button)`
 const Order = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const selected = useSelector((state) => state.order.selected);
+  const [selected, setSelected] = useState([]);
 
   const handleCreateClick = () => {
     history.push('/orders/create');
+  };
+
+  const handleSelected = (selectedFields) => {
+    setSelected(selectedFields);
   };
 
   const handleDeleteClick = () => {
@@ -36,7 +40,7 @@ const Order = () => {
         <ActionButton onClick={handleCreateClick} type="primary">Create order</ActionButton>
         <ActionButton onClick={handleDeleteClick}>Delete selected</ActionButton>
       </ButtonContainer>
-      <OrdersTable />
+      <OrdersTable selected={selected} handleSelected={handleSelected} />
     </>
   );
 };

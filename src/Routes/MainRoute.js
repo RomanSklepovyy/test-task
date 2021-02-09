@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import { Layout } from 'antd';
 import Login from '../Components/Login/Login';
 import Register from '../Components/Register/Register';
-import { StyledContent, StyledLayout } from '../Styles/app';
+import { StyledContent, StyledLayout } from '../styles/app';
 import Header from '../Components/Header/Header';
 import Sidebar from '../Components/Sidebar/Sidebar';
 import ContentRouter from './ContentRouter';

@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { Table } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import OrderDescription from './OrderDescriptionTable/OrderDescriptionTable';
 import getColumns from './getOrdersColumn';
-import { setSelectedAction, setUpdatingOrder } from '../../../redux/orders/orderActions';
+import { setUpdatingOrder } from '../../../redux/orders/orderActions';
 import { getOrdersThunk } from '../../../redux/orders/orderThunks';
+import { tableDataSourceSelector } from '../../../selectors/order';
 
-const OrdersTable = () => {
+const OrdersTable = ({ selected, handleSelected }) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const total = useSelector((state) => state.order.count);
-  const orders = useSelector((state) => state.order.orders);
-  const selected = useSelector((state) => state.order.selected);
+  const total = useSelector((state) => state.order.total);
+  const orders = useSelector(tableDataSourceSelector);
   const isLoading = useSelector((state) => state.order.isLoading);
+
   const [sortedInfo, setSortedInfo] = useState({});
 
   useEffect(() => {
@@ -35,24 +37,20 @@ const OrdersTable = () => {
     dispatch(getOrdersThunk(sortOptions));
   };
 
-  const onChangeSelected = (selectedRowKeys) => {
-    dispatch(setSelectedAction({ selected: selectedRowKeys }));
-  };
-
-  const onEditHandler = () => {
-    dispatch(setUpdatingOrder({ order }));
-    history.push('/orders/update');
+  const editHandler = (order) => {
+    // dispatch(setUpdatingOrder({ order }));
+    // history.push('/orders/update');
   };
 
   const rowSelection = {
     selected,
-    onChange: onChangeSelected,
+    onChange: handleSelected,
   };
 
   return (
     <Table
       rowSelection={rowSelection}
-      columns={getColumns(sortedInfo, dispatch, history)}
+      columns={getColumns(sortedInfo, editHandler)}
       dataSource={orders}
       onChange={handleChange}
       rowKey="_id"
@@ -65,6 +63,11 @@ const OrdersTable = () => {
       expandedRowRender={(record) => <OrderDescription items={record.lineItems} />}
     />
   );
+};
+
+OrdersTable.propTypes = {
+  selected: PropTypes.array.isRequired,
+  handleSelected: PropTypes.func.isRequired,
 };
 
 export default OrdersTable;

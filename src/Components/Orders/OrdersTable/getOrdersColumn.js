@@ -1,7 +1,4 @@
-import * as types from '../../../redux/orders/orderActionTypes';
-import { setUpdatingOrder } from '../../../redux/orders/orderActions';
-
-const getOrdersColumn = (sortedInfo, dispatch, history) => [
+const getOrdersColumn = (sortedInfo, editHandler) => [
   {
     title: 'Status',
     dataIndex: 'status',
@@ -38,12 +35,8 @@ const getOrdersColumn = (sortedInfo, dispatch, history) => [
   {
     key: 'update',
     width: 80,
-    // eslint-disable-next-line react/react-in-jsx-scope
     render: (text, order) => {
-      const onEditHandler = () => {
-        dispatch(setUpdatingOrder({ order }));
-        history.push('/orders/update');
-      };
+      const onEditHandler = () => editHandler(order);
       return (
         // eslint-disable-next-line react/react-in-jsx-scope
         <a onClick={onEditHandler}>update</a>

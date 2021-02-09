@@ -10,3 +10,5 @@ const normalizeDocs = (docs) => {
 
   return { ids, list };
 };
+
+export default normalizeDocs;

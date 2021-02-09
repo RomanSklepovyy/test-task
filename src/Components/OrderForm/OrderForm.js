@@ -7,7 +7,7 @@ import {
 import getAddressFields from './helpers/getAddressFieldsHelper';
 import getOrderFieldsHelper from './helpers/getOrderFieldsHelper';
 import getLineItemsFields from './helpers/getLineItemsFields';
-import { StyledOrderForm, StyledSpan } from '../../Styles/orderForm';
+import { StyledOrderForm, StyledSpan } from '../../styles/orderForm';
 
 const OrderForm = ({ form, handleSubmit }) => {
   const updatingOrder = useSelector((state) => state.order.updatingOrder);

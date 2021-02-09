@@ -5,13 +5,13 @@ import {
   userLoadingSuccessAction,
 }
   from './authActions';
-import * as authAPI from '../../Services/apiServices/authApiRequests';
+import * as authAPI from '../../services/apiServices/authApiRequests';
 import {
   removeAccessToken,
   removeRefreshToken,
   setAccessToken,
   setRefreshToken,
-} from '../../Services/authServices/tokenHelper';
+} from '../../services/authServices/tokenHelper';
 
 export const loginUser = ({ email, password }) => async (dispatch) => {
   try {
