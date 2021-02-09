@@ -1,48 +1,35 @@
 import * as types from './authActionTypes';
-import {
-  getAccessToken,
-  getRefreshToken,
-  removeAccessToken,
-  removeRefreshToken,
-  setAccessToken,
-  setRefreshToken,
-} from '../../Services/authServices/tokenHelper';
 
 const initialState = {
-  token: getAccessToken(),
-  refreshToken: getRefreshToken(),
   isAuthenticated: false,
   isLoading: false,
   user: null,
 };
 
 const authReducer = (state = initialState, action) => {
-  switch (action.type) {
+  const { type, payload } = action;
+  switch (type) {
     case types.USER_LOADING:
       return {
         ...state,
         isLoading: true,
       };
     case types.USER_LOADING_SUCCESS:
-      setAccessToken(action.payload.token);
-      setRefreshToken(action.payload.refreshToken);
       return {
         ...state,
         isAuthenticated: true,
         isLoading: false,
-        user: action.payload.user,
+        user: payload.user,
       };
     case types.GET_USER:
       return {
         ...state,
         isAuthenticated: true,
-        user: action.payload.user,
+        user: payload.user,
       };
     case types.USER_LOADING_FAILURE:
     case types.AUTH_ERROR:
     case types.LOGOUT:
-      removeAccessToken();
-      removeRefreshToken();
       return {
         ...state,
         token: null,

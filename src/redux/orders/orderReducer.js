@@ -1,18 +1,19 @@
 import * as types from './orderActionTypes';
 
 const initialState = {
-  list: {},
-  ids: [],
-  // orders: [],
+  // list: {},
+  // ids: [],
+  count: 0,
+  orders: [],
   error: '',
   isLoading: false,
-  // selected: [],
-  // updatingOrder: null,
+  selected: [],
+  updatingOrder: null,
 };
 
 const orderReducer = (state = initialState, action) => {
-  // const { type, payload } = action;
-  switch (action.type) {
+  const { type, payload } = action;
+  switch (type) {
     case types.SET_TABLE_LOADING:
       return {
         ...state,
@@ -21,7 +22,7 @@ const orderReducer = (state = initialState, action) => {
     case types.SET_UPDATING_ORDER:
       return {
         ...state,
-        updatingOrder: action.payload.order,
+        updatingOrder: payload.order,
       };
     case types.REMOVE_UPDATING_ORDER:
       return {
@@ -31,13 +32,15 @@ const orderReducer = (state = initialState, action) => {
     case types.GET_ORDERS_SUCCESS:
       return {
         ...state,
+        count: payload.count,
         isLoading: false,
-        orders: action.payload.orders,
+        orders: payload.orders,
       };
     case types.CREATE_ORDER_SUCCESS:
       return {
         ...state,
-        orders: [action.payload.order, ...state.order.orders],
+        count: state.order.count + 1,
+        orders: [payload.order, ...state.order.orders],
         // orders: {
         //   ...state.order.orders,
         //   [payload.order._id]: payload.order,
@@ -48,8 +51,9 @@ const orderReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        orders: state.order.orders.reduce(
-          (acc, order) => (state.order.selected.include(order._id) ? null : acc.push(order)),
+        count: state.count - state.selected.length,
+        orders: state.orders.reduce(
+          (acc, order) => (state.selected.includes(order._id) ? acc : [...acc, order]), [],
         ),
       };
     case types.UPDATE_ORDER_SUCCESS:
@@ -59,7 +63,7 @@ const orderReducer = (state = initialState, action) => {
         updatingOrder: null,
         orders: state.order.orders.map((order) => (
           order._id === action.payload.order._id
-            ? action.payload.order
+            ? payload.order
             : order
         )),
       };
@@ -67,12 +71,12 @@ const orderReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        error: action.payload.error,
+        error: payload.error,
       };
     case types.SET_ORDERS_ID_TO_SELECTED:
       return {
         ...state,
-        selected: action.payload.selected,
+        selected: payload.selected,
       };
     default:
       return state;

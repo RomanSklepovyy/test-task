@@ -20,10 +20,6 @@ const Order = () => {
   const history = useHistory();
   const selected = useSelector((state) => state.order.selected);
 
-  useEffect(() => {
-    dispatch(getOrdersThunk());
-  }, []);
-
   const handleCreateClick = () => {
     history.push('/orders/create');
   };
@@ -31,7 +27,6 @@ const Order = () => {
   const handleDeleteClick = () => {
     if (selected.length) {
       dispatch(deleteOrdersThunk(selected));
-      dispatch(getOrdersThunk());
     }
   };
 

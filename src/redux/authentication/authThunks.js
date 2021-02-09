@@ -6,12 +6,21 @@ import {
 }
   from './authActions';
 import * as authAPI from '../../Services/apiServices/authApiRequests';
+import {
+  removeAccessToken,
+  removeRefreshToken,
+  setAccessToken,
+  setRefreshToken,
+} from '../../Services/authServices/tokenHelper';
 
 export const loginUser = ({ email, password }) => async (dispatch) => {
   try {
     dispatch(userLoadingAction());
     const res = await authAPI.login(email, password);
-    dispatch(userLoadingSuccessAction(res.data.user, res.data.token, res.data.refreshToken));
+    const { user, token, refreshToken } = res.data;
+    setAccessToken(token);
+    setRefreshToken(refreshToken);
+    dispatch(userLoadingSuccessAction(user, token, refreshToken));
   } catch (error) {
     dispatch(userLoadingFailureAction());
   }
@@ -21,7 +30,10 @@ export const registerUser = ({ fullName, email, password }) => async (dispatch) 
   try {
     dispatch(userLoadingAction());
     const res = await authAPI.register(fullName, email, password);
-    dispatch(userLoadingSuccessAction(res.data.user, res.data.token, res.data.refreshToken));
+    const { user, token, refreshToken } = res.data;
+    setAccessToken(token);
+    setRefreshToken(refreshToken);
+    dispatch(userLoadingSuccessAction(user, token, refreshToken));
   } catch (e) {
     dispatch(userLoadingFailureAction());
   }
@@ -30,6 +42,8 @@ export const registerUser = ({ fullName, email, password }) => async (dispatch) 
 export const logoutUser = () => async (dispatch) => {
   try {
     await authAPI.logout();
+    removeAccessToken();
+    removeRefreshToken();
     dispatch(logoutUser());
   } catch (e) {
     console.log(e);
@@ -38,9 +52,8 @@ export const logoutUser = () => async (dispatch) => {
 
 export const loginUserByToken = () => async (dispatch) => {
   try {
-    const res = await authAPI.getUserByToken();
-    console.log(res);
-    dispatch(getUser({ user: res.data }));
+    const { data } = await authAPI.getUserByToken();
+    dispatch(getUser({ user: data }));
   } catch (e) {
     console.log(e);
   }

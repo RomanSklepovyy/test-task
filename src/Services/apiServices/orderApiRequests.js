@@ -1,23 +1,21 @@
 import apiHelper from './apiHelper';
 
 export const getOrders = ({
-  sortField, sortType, limit = 50, skip = 0,
+  sortField, sortType, limit = 8, skip = 0,
 }) => {
-  const query = {
+  const params = {
     limit,
     skip,
   };
 
   if (sortField && sortType) {
-    query.sortBy = `${sortField}:${sortType}`;
-  } else if (sortField) {
-    query.sortBy = sortField;
+    params.sortBy = `${sortField}:${sortType}`;
   }
 
   return apiHelper.requestWithAuth({
     url: '/orders',
     method: 'get',
-    query,
+    params,
   });
 };
 

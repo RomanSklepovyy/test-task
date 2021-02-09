@@ -8,8 +8,8 @@ export const setUpdatingOrder = (payload) => ({ type: types.SET_UPDATING_ORDER, 
 
 export const removeUpdatingOrder = () => ({ type: types.REMOVE_UPDATING_ORDER });
 
-export const createOrdersSuccessAction = (payload) => ({
-  type: types.UPDATE_ORDER_SUCCESS, payload,
+export const createOrderSuccessAction = (payload) => ({
+  type: types.CREATE_ORDER_SUCCESS, payload,
 });
 
 export const updateOrderSuccessAction = (payload) => ({
