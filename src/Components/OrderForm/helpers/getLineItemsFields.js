@@ -3,6 +3,8 @@ import React from 'react';
 
 const getAddressFields = (form, order) => {
   const lineItem = order ? order.lineItems[0] : null;
+  if (lineItem) lineItem.itemDescription = lineItem.description;
+
   const itemFields = ['ID', 'quantity', 'price', 'shipping price', 'discount',
     'description'];
   const itemNames = ['productId', 'quantity', 'unitPrice', 'shippingPrice', 'discount',

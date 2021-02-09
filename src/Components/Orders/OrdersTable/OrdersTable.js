@@ -38,8 +38,7 @@ const OrdersTable = ({ selected, handleSelected }) => {
   };
 
   const editHandler = (order) => {
-    // dispatch(setUpdatingOrder({ order }));
-    // history.push('/orders/update');
+    history.push(`/orders/update/${order._id}`);
   };
 
   const rowSelection = {

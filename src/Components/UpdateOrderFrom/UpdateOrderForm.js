@@ -1,20 +1,16 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import OrderForm from '../OrderForm/OrderForm';
 import FormHeader from '../../styles/formHeader';
-import { removeUpdatingOrder } from '../../redux/orders/orderActions';
 import { createOrderWithFormData } from '../../services/OrderServices/createOrderWithFormData';
 import { updateOrderThunk } from '../../redux/orders/orderThunks';
 
 const UpdateOrderForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const updatingOrder = useSelector((state) => state.order.updatingOrder);
-
-  useEffect(() => () => {
-    dispatch(removeUpdatingOrder());
-  }, []);
+  const { id } = useParams();
+  const updatingOrder = useSelector((state) => state.order.list[id]);
 
   const handleSubmit = (values) => {
     const order = createOrderWithFormData(values);
@@ -28,7 +24,7 @@ const UpdateOrderForm = () => {
       <FormHeader>
         Update order:
       </FormHeader>
-      <OrderForm handleSubmit={handleSubmit} />
+      <OrderForm handleSubmit={handleSubmit} order={updatingOrder} />
     </>
   );
 };

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
 import {
   Form, Row, Col, Button,
 } from 'antd';
@@ -9,9 +8,7 @@ import getOrderFieldsHelper from './helpers/getOrderFieldsHelper';
 import getLineItemsFields from './helpers/getLineItemsFields';
 import { StyledOrderForm, StyledSpan } from '../../styles/orderForm';
 
-const OrderForm = ({ form, handleSubmit }) => {
-  const updatingOrder = useSelector((state) => state.order.updatingOrder);
-
+const OrderForm = ({ form, handleSubmit, order }) => {
   const handleCreate = (e) => {
     e.preventDefault();
 
@@ -29,11 +26,11 @@ const OrderForm = ({ form, handleSubmit }) => {
   return (
     <StyledOrderForm onSubmit={handleCreate}>
       <StyledSpan>Order info:</StyledSpan>
-      <Row gutter={24}>{getOrderFieldsHelper(form, updatingOrder)}</Row>
+      <Row gutter={24}>{getOrderFieldsHelper(form, order)}</Row>
       <StyledSpan>Line item info:</StyledSpan>
-      <Row gutter={24}>{getLineItemsFields(form, updatingOrder)}</Row>
+      <Row gutter={24}>{getLineItemsFields(form, order)}</Row>
       <StyledSpan>Address info:</StyledSpan>
-      <Row gutter={24}>{getAddressFields(form, updatingOrder)}</Row>
+      <Row gutter={24}>{getAddressFields(form, order)}</Row>
       <Row>
         <Col span={24} style={{ textAlign: 'right' }}>
           <Button type="primary" htmlType="submit">
@@ -51,6 +48,11 @@ const OrderForm = ({ form, handleSubmit }) => {
 OrderForm.propTypes = {
   form: PropTypes.object.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  order: PropTypes.object,
+};
+
+OrderForm.defaultProps = {
+  order: null,
 };
 
 export default Form.create({ name: 'advanced_search' })(OrderForm);

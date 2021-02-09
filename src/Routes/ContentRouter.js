@@ -20,7 +20,7 @@ const ContentRouter = () => (
     <PrivateRoute path="/members" component={Members} />
     <PrivateRoute path="/connections" component={Connections} />
     <PrivateRoute path="/orders/create" component={CreateOrderForm} />
-    <PrivateRoute path="/orders/update" component={UpdateOrderForm} />
+    <PrivateRoute path="/orders/update/:id" component={UpdateOrderForm} />
     <PrivateRoute path="/systems" component={Systems} />
     <Route render={() => (<h1>Not found</h1>)} />
   </Switch>
