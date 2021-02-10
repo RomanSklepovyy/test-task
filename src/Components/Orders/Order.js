@@ -1,10 +1,10 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Button } from 'antd';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import OrdersTable from './OrdersTable/OrdersTable';
-import { deleteOrdersThunk, getOrdersThunk } from '../../redux/orders/orderThunks';
+import { deleteOrdersThunk } from '../../redux/orders/orderThunks';
 
 const ButtonContainer = styled.div`
   margin: 15px 0;

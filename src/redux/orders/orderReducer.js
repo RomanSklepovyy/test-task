@@ -36,6 +36,7 @@ const orderReducer = (state = initialState, action) => {
       return {
         ...state,
         list: {
+          ...state.order.list,
           [payload.order._id]: payload.order,
         },
         isLoading: false,

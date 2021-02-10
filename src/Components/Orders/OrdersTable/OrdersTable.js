@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import OrderDescription from './OrderDescriptionTable/OrderDescriptionTable';
 import getColumns from './getOrdersColumn';
-import { setUpdatingOrder } from '../../../redux/orders/orderActions';
 import { getOrdersThunk } from '../../../redux/orders/orderThunks';
 import { tableDataSourceSelector } from '../../../selectors/order';
 

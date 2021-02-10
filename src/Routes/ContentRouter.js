@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Dashboard from '../Components/Dashboard/Dashboard';
-import Order from '../Components/Orders/Order';
-import Products from '../Components/Products/Products';
-import Members from '../Components/Members/Members';
-import Connections from '../Components/Connections/Connections';
-import Systems from '../Components/Systems/Systems';
-import PrivateRoute from './PrivateRoute';
-import CreateOrderForm from '../Components/CreateOrderForm/CreateOrderForm';
-import UpdateOrderForm from '../Components/UpdateOrderFrom/UpdateOrderForm';
-import MainPage from '../Components/MainPage/MainPage';
+
+const PrivateRoute = lazy(() => import('./PrivateRoute'));
+const Dashboard = lazy(() => import('../Components/Dashboard/Dashboard'));
+const Order = lazy(() => import('../Components/Orders/Order'));
+const Products = lazy(() => import('../Components/Products/Products'));
+const Members = lazy(() => import('../Components/Members/Members'));
+const Connections = lazy(() => import('../Components/Connections/Connections'));
+const Systems = lazy(() => import('../Components/Systems/Systems'));
+const CreateOrderForm = lazy(() => import('../Components/CreateOrderForm/CreateOrderForm'));
+const UpdateOrderForm = lazy(() => import('../Components/UpdateOrderFrom/UpdateOrderForm'));
+const MainPage = lazy(() => import('../Components/MainPage/MainPage'));
 
 const ContentRouter = () => (
   <Switch>

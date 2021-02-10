@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { Layout } from 'antd';
 import Login from '../Components/Login/Login';
@@ -7,6 +7,7 @@ import { StyledContent, StyledLayout } from '../styles/app';
 import Header from '../Components/Header/Header';
 import Sidebar from '../Components/Sidebar/Sidebar';
 import ContentRouter from './ContentRouter';
+import SpinComponent from '../Components/SpinComponent/SpinComponent';
 
 const MainRouter = () => (
   <Switch>
@@ -18,7 +19,9 @@ const MainRouter = () => (
         <Layout>
           <Header />
           <StyledContent>
-            <ContentRouter />
+            <Suspense fallback={<SpinComponent />}>
+              <ContentRouter />
+            </Suspense>
           </StyledContent>
         </Layout>
       </StyledLayout>
